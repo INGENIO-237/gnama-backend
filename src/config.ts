@@ -1,3 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 
-export {}
+export const DB_URI = process.env.DB_URI;
+export const PORT = process.env.PORT || 7000
