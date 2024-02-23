@@ -1,15 +1,6 @@
-import express from "express";
-import cors from "cors";
-import connectToDB from "./db/db-connection";
 import { PORT } from "./config";
+import createServer from "./base/server";
 
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-
-(async () => {
-  await connectToDB();
-})();
+const app = createServer();
 
 app.listen(PORT, () => console.log("Server running"));
