@@ -11,6 +11,10 @@ export default class UserRepository {
     return await User.create(payload);
   }
 
+  async getUserByEmail(email: string) {
+    return await User.findOne({ email });
+  }
+
   async deleteUser(userId: string) {
     await User.findByIdAndDelete(userId);
   }

@@ -10,10 +10,16 @@ export default class UserService {
   }
 
   async createUser(payload: any) {
-    return this.userRepository.createUser(payload);
+    let user = await this.userRepository.getUserByEmail(payload.email);
+
+    if (!user) {
+      user = await this.userRepository.createUser(payload);
+    }
+
+    return user;
   }
 
-  async deleteUser(userId: string){
+  async deleteUser(userId: string) {
     await this.userRepository.deleteUser(userId);
   }
 }
