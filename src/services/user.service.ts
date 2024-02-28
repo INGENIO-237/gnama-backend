@@ -9,6 +9,10 @@ export default class UserService {
     return await this.userRepository.getUsers();
   }
 
+  async getUser(filter: any) {
+    return await this.userRepository.getUser(filter);
+  }
+
   async createUser(payload: any) {
     let user = await this.userRepository.getUserByEmail(payload.email);
 
@@ -17,6 +21,10 @@ export default class UserService {
     }
 
     return user;
+  }
+
+  async updateUser(userId: string, payload: any){
+    await this.userRepository.updateUser(userId, payload);
   }
 
   async deleteUser(userId: string) {

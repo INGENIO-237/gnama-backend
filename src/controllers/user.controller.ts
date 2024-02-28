@@ -18,6 +18,12 @@ export default class UserController {
     return res.status(201).json(user);
   }
 
+  async updateUser(req: Request, res: Response){
+    await this.userService.updateUser(req.userId, req.body);
+
+    return res.sendStatus(200);
+  }
+
   async deleteUser(req: Request, res: Response) {
     await this.userService.deleteUser(req.params.userId);
 

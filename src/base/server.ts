@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import connectToDB from "./db-connection";
 import router from "../router";
-import jwtCheck from "../middlewares/jwtCheck";
+import { checkJwt, parseJwt } from "../middlewares/auth";
 
 export default function createServer() {
   const server = express();
@@ -14,7 +14,8 @@ export default function createServer() {
     await connectToDB();
   })();
 
-  server.use(jwtCheck);
+  server.use(checkJwt);
+  server.use(parseJwt);
 
   router(server);
 

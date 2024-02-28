@@ -7,8 +7,16 @@ export default class UserRepository {
     return await User.find();
   }
 
+  async getUser(filter: any) {
+    return await User.findOne(filter);
+  }
+
   async createUser(payload: any) {
     return await User.create(payload);
+  }
+
+  async updateUser(userId: string, payload: any) {
+    await User.findByIdAndUpdate(userId, payload);
   }
 
   async getUserByEmail(email: string) {
