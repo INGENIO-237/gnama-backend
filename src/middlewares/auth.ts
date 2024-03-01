@@ -33,7 +33,7 @@ export async function parseJwt(
   if (!authorization || !authorization.startsWith("Bearer"))
     return res.sendStatus(401);
 
-  const token = authorization.split("")[1];
+  const token = authorization.split(" ")[1];
 
   const decoded = jwt.decode(token) as jwt.JwtPayload;
   const authProviderId = decoded.sub;

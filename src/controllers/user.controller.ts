@@ -12,13 +12,21 @@ export default class UserController {
     return res.status(200).json(users);
   }
 
+  async getCurrentUser(req: Request, res: Response) {
+    const user = await this.userService.getUser({ _id: req.userId });
+
+    if (!user) return res.sendStatus(404);
+
+    return res.status(200).json(user);
+  }
+
   async createUser(req: Request, res: Response) {
     const user = await this.userService.createUser(req.body);
 
     return res.status(201).json(user);
   }
 
-  async updateUser(req: Request, res: Response){
+  async updateUser(req: Request, res: Response) {
     await this.userService.updateUser(req.userId, req.body);
 
     return res.sendStatus(200);
